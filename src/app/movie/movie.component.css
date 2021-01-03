@@ -1,0 +1,8 @@
+@import "../app.component.css";
+div {
+    width: 430px;
+    padding: 10px;
+    /* border: 5px solid rgba(85, 129, 179, 0.63);
+    border-radius: 5px; */
+    margin: 10px;
+}

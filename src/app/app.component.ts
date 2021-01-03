@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'sealadder-frontend';
+  constructor(private http: HttpClient){
+    this.http.get('https://api.themoviedb.org/3/movie/550?api_key=d32c6f01f6fd749822fd5c0c6aaec77b').subscribe();
+  }
 }

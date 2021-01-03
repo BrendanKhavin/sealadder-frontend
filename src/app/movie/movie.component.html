@@ -1,0 +1,18 @@
+<a
+    class="table"
+    *ngFor="let movie of movies"
+>
+    <div>
+        <img src={{movie[3]}}> 
+        <h1>
+
+            {{movie[1]}} 
+            {{ getEngTitle(movie[1], movie[4])}}
+            <br>({{movie[5]}}) 
+        
+        </h1> <!--Movie Title in original language, if Title is not in english return englsh title, date-->
+        
+        <p>{{movie[2]}}</p>
+
+    </div>
+</a>>
