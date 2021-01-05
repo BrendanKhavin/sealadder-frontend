@@ -1,13 +1,13 @@
-h1 {
+@import "~ng-zorro-antd/ng-zorro-antd.min.css";
+
+ h1,p {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    color: darkslategray
+}
+
+p {
+    color:rgba(63, 61, 61, 0.76);
 }
 
 body {
     text-align: left;
-}
-
-p {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    color: rgba(29, 27, 27, 0.705);
 }

@@ -1,18 +1,55 @@
-<a
-    class="table"
-    *ngFor="let movie of movies"
->
-    <div>
-        <img src={{movie[3]}}> 
-        <h1>
+<!-- Ask Question: 
+    Why can't I refer to the attributes of the Movie object
+    Is there a better way to show similar movies without creating another div
+    Why doesn't ngzorro button change
+-->
 
-            {{movie[1]}} 
-            {{ getEngTitle(movie[1], movie[4])}}
-            <br>({{movie[5]}}) 
-        
-        </h1> <!--Movie Title in original language, if Title is not in english return englsh title, date-->
-        
-        <p>{{movie[2]}}</p>
-
+<div>
+    <div id="movieListDiv"> 
+        <a 
+            class="table"
+            *ngFor="let movie of movies"
+        >
+        <div>
+            <img src={{movie[3]}}> 
+            <h4>
+                <b>
+                {{movie[1]}} <!-- movie.original_name -->
+                {{ getEngTitle(movie[1], movie[4])}} <!-- movie.original_name, movie.en_name-->
+                <br>
+                ({{movie[5]}}) <!-- movie.date -->
+                <br>
+                </b>    
+            </h4>
+            <p>{{movie[2]}}</p> <!-- movie.desc-->
+            <button (click)="onClick(movie[0])" class="btn btn-primary" > Similar Movies </button> 
+        </div>
+        </a> 
     </div>
-</a>>
+
+    <div id="simListDiv" >
+        <button (click)="onBack()" class="btn btn-primary" > Go Home</button>
+        <a
+        class = "table"
+        *ngFor="let movie of simMovies"
+        >
+        <div>
+            <img src={{movie[3]}}> 
+                <h1>
+
+                    {{movie[1]}} 
+                    {{ getEngTitle(movie[1], movie[4])}}
+                    <br>
+                    ({{movie[5]}})
+                    <br>
+                    
+                
+                </h1>
+                
+                <p>{{movie[2]}}</p>
+                <button (click)="onClick(movie[0])" class="btn btn-primary"> Similar Movies </button>
+        </div>
+        </a>
+            <button (click)="onBack()" class="btn btn-primary" > Go Home</button>
+    </div>
+</div>
