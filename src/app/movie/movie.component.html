@@ -4,38 +4,147 @@
     Why doesn't ngzorro button change
 -->
 
-<div>
-    <div id="movieListDiv"> 
-        <a 
-            class="table"
-            *ngFor="let movie of movies"
-        >
-        <div>
-            <img src={{movie[3]}}> 
-            <h4>
-                <b>
-                {{movie[1]}} <!-- movie.original_name -->
-                {{ getEngTitle(movie[1], movie[4])}} <!-- movie.original_name, movie.en_name-->
-                <br>
-                ({{movie[5]}}) <!-- movie.date -->
-                <br>
-                </b>    
-            </h4>
-            <p>{{movie[2]}}</p> <!-- movie.desc-->
-            <button (click)="onClick(movie[0])" class="btn btn-primary" > Similar Movies </button> 
-        </div>
-        </a> 
-    </div>
+<!--  <div>
+    <div id="movieListDiv" >
+        <div class = "float-container"> 
+                <a 
+                    *ngFor="let movie of movies"
+                >
+                <div class= "float-child">
+                    <img src={{movie[3]}}> 
+                    <h4>
+                        <b>
+                        {{movie[1]}}
+                        {{ getEngTitle(movie[1], movie[4])}}
+                        <br>
+                        ({{movie[5]}})
+                        <br>
+                        </b>    
+                    </h4>
+                    <p>{{movie[2]}}</p>
+                    <button (click)="onClick(movie[0])" nz-button nzType ="primary" > Similar Movies </button> 
+                </div>
+                </a> 
+            </div>
+        </div>  
 
-    <div id="simListDiv" >
-        <button (click)="onBack()" class="btn btn-primary" > Go Home</button>
+    <div id="simListDiv">
+        <div class = "float-container" >
+            <button (click)="onBack()" class="btn btn-primary" display ='none'> Go Home</button>
+            <a
+            *ngFor="let movie of simMovies"
+            >
+            <div class = "float-child">
+                <img src={{movie[3]}}> 
+                    <h4>
+
+                        {{movie[1]}} 
+                        {{ getEngTitle(movie[1], movie[4])}}
+                        <br>
+                        ({{movie[5]}})
+                        <br>
+                        
+                    
+                    </h4>
+                    
+                    <p>{{movie[2]}}</p>
+                    <button (click)="onClick(movie[0])" class="btn btn-primary"> Similar Movies </button>
+            </div>
+            </a>
+        </div>
+        <button (click)="onBack()" class="btn btn-primary"> Go Home</button>
+    </div>    
+</div> -->
+
+<!--
+    Truncate Text for movie
+    Using breadcrumbs to backtrack
+    Changing routing
+    Animate Something
+-->
+
+<base href="/">
+
+<style>
+    .wrapper {
+        display:grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(5, 1fr);
+        grid-gap: 1em;
+        grid-auto-rows: 50px;
+        justify-self: stretch;
+        align-content: space-between;
+        align-items: stretch;
+        background: rgba(211, 211, 211, 0.336);
+        visibility: visible;
+        overflow: hidden;
+    }
+
+    .wrapper2 {
+        display:grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: 90% 10%;
+        grid-gap: 1em;
+        grid-auto-rows: 1fr;
+        align-content: space-evenly;
+        background: rgba(211, 211, 211, 0.336);
+        visibility: hidden;
+        overflow: hidden;
+    }
+
+    .block{
+        display: block;
+        width: 100%;
+        border: none;
+        background-color: #4c9baf;
+        padding: 14px 28px;
+        font-size: 16px;
+        cursor: pointer;
+        text-align: center;
+        color: white;
+        border-radius: 5px 5px 5px 5px;
+        vertical-align: baseline;
+    }  
+
+</style>
+
+<div id = "movieListDiv" class="wrapper">
+    <a
+        *ngFor="let movie of movies"
+    >
+        <div>
+            <img src={{movie.poster_path}}>
+        
+            <div text-align = "left">
+                    <h2>{{movie.original_title}}</h2>
+                    <h2 *ngIf= "!getEngTitle(movie.original_title, movie.title)"> English Title: {{movie.title}} </h2>
+            </div>
+
+            <div>
+                ({{movie.release_date}})
+                <br>   
+            </div>
+
+            <div>
+                <p>{{movie.overview}}</p>
+            </div>
+
+            <div>
+                <button type="button" class="block"
+                    (click)= onClickSimMovie(movie.original_title) > Similar Movies 
+                </button>
+            </div>
+        </div>
+    </a>
+</div>
+
+<div class="home-btn"><button (click)="onBack()" class="btn btn-primary" display ='none'> Go Home</button></div>
+    <div id='simListDiv' class="wrapper2">
         <a
-        class = "table"
         *ngFor="let movie of simMovies"
         >
-        <div>
             <img src={{movie[3]}}> 
-                <h1>
+                <h4>
 
                     {{movie[1]}} 
                     {{ getEngTitle(movie[1], movie[4])}}
@@ -44,12 +153,10 @@
                     <br>
                     
                 
-                </h1>
+                </h4>
                 
                 <p>{{movie[2]}}</p>
                 <button (click)="onClick(movie[0])" class="btn btn-primary"> Similar Movies </button>
-        </div>
         </a>
-            <button (click)="onBack()" class="btn btn-primary" > Go Home</button>
     </div>
-</div>
+<div class="home-btn"><button (click)="onBack()" class="btn btn-primary" display ='none'> Go Home</button></div>

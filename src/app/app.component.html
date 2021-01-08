@@ -1,15 +1,25 @@
-<head>
-    <div class = "wrapper"> 
-        <title> Homepage </title>
-        <hr>
-    </div>
-</head>
+<style>
+    .wrapper{
+        grid-template-rows: 9% 90% 1%;
+        background: linear-gradient(120deg, rgb(159, 202, 202), rgb(245, 159, 159)); 
+        padding: 1em;
+    }
+</style>
 
-<body>
-    <div>
-        <div style = "background: linear-gradient(120deg, lightcoral, rgb(159, 202, 202)); padding: 1em">
+<div class='wrapper'>
+        <div> 
+            <h1> Homepage </h1>
+        </div>
+        
+        <div>
             <app-movie></app-movie>
         </div>
-    </div>
-</body>
 
+        <div>
+            <h4> Footer </h4>
+        </div>
+</div>
+
+<router-outlet>
+    
+</router-outlet>
