@@ -23,23 +23,11 @@ p {
     left: 50%;
 }
 
-.home-btn{
-    visibility: hidden;
-}
-
-a:link {
-    text-decoration: none;
+  a:link {
+    text-decoration:  rgb(60, 66, 75);
   }
   
   a:visited {
-    text-decoration: none;
-  }
-  
-  a:hover {
+    text-decoration:  rgb(60, 66, 75);
     text-decoration: underline;
-    text-decoration-color: rgba(176, 196, 222, 0.486);
   }
-  
-  a:active {
-    text-decoration: underline;
-}

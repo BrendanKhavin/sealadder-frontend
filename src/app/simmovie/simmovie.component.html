@@ -1,1 +1,80 @@
+<style>
+
+    .wrapper {
+        display:grid;
+        grid-template-columns: 30% 70%;
+        grid-gap: 1em;
+        align-content: space-between;
+        background: rgba(211, 211, 211, 0.336);
+        visibility: visible;
+        overflow: hidden;
+    }
+    
+    .titleMovie {
+        border-right: 5px lightslategrey;
+    }
+
+    .wrapper2{
+        display:grid;
+        grid-template-columns: repeat(6, 1fr);
+        grid-gap: 1em;
+        align-content: space-between;
+        background: rgba(211, 211, 211, 0.336);
+        visibility: visible;
+        overflow: hidden; 
+        
+    }
+
+    .truncate {
+        width: 250px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+</style>
+
+<div id = "movieListDiv" class="wrapper">
+    <div class="titleMovie">
+        <img src={{movie.poster_path}}>
+    </div>
+    <div>
+        <h1> {{movie.original_title}} </h1>
+        <h2 *ngIf= "!getEngTitle(movie.original_title, movie.title)"> English Title: {{movie.title}} </h2>
+        <h1> ({{movie.release_date}}) </h1>
+        <h2> {{movie.overview}} </h2>
+    </div>
+</div>
+
+<hr>
+
+<h1> Similar Movies </h1>
+
+<div id= "similarListDiv" class="wrapper2">
+    <a
+        *ngFor="let movie of movies"
+    >
+        <div>
+            <img src={{movie.poster_path}}>
+        
+            <div text-align = "left">
+                    <h2>{{movie.original_title}}</h2>
+                    <h2 *ngIf= "!getEngTitle(movie.original_title, movie.title)"> English Title: {{movie.title}} </h2>
+            </div>
+
+            <div>
+                ({{movie.release_date}})
+                <br>   
+            </div>
+
+            <div class=".truncate">
+                <p>{{movie.overview}}</p>
+            </div>
+
+            <div>
+                <button (click)="onSelect(movie)" type="button" class="block" > Similar Movies </button>
+            </div>
+        </div>
+    </a>
+</div>
+
 <p>simmovie works!</p>

@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import { MovieDbService } from '../movie-db.service';
 import { IMovieDb } from '../movieDb.interface';
-import { IMoviesDb} from './movieDb.interface';
+import { IMoviesDb} from '../movieDb.interface';
+import { Router } from '@angular/router';
+
 
 
 @Component({
@@ -17,7 +19,7 @@ export class MovieComponent implements OnInit {
   movies = [] as any;
 
 
-  constructor(private _movieDbService: MovieDbService, private route: ActivatedRoute) {   }
+  constructor(private _movieDbService: MovieDbService, private router: Router) {   }
 
   ngOnInit() {
     this._movieDbService.getMovies().subscribe(data => {
@@ -32,6 +34,13 @@ export class MovieComponent implements OnInit {
     return oName == eName;
   }
 
- 
+  onSelect(movie : IMovieDb){
+    this.router.navigate(['/similar-movies', movie.id, movie.title]);
+  }
   
 }
+
+/*
+  Similar Movie Works
+  Add Layout
+*/

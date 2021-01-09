@@ -4,8 +4,8 @@ import { MovieComponent } from './movie/movie.component';
 import { SimmovieComponent } from './simmovie/simmovie.component';
 
 const routes: Routes = [
-  {path: 'movies', component: MovieComponent},
-  {path: 'similar-movies', component: SimmovieComponent}
+  {path: '', component: MovieComponent},
+  {path: 'similar-movies/:movie.id/:movie.title', component: SimmovieComponent}
 ];
 
 @NgModule({
