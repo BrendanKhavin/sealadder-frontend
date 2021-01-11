@@ -22,12 +22,13 @@ export class MovieComponent implements OnInit {
   constructor(private _movieDbService: MovieDbService, private router: Router) {   }
 
   ngOnInit() {
+    this.movies = [];
     this._movieDbService.getMovies().subscribe(data => {
       for (var i = 0; i < data.results.length; i++){
         data.results[i].poster_path = 'https://image.tmdb.org/t/p/w400/' + data.results[i].poster_path;
         this.movies.push(data.results[i]);
       }
-    })
+    } )
   }
 
   getEngTitle(oName : string, eName : string){ //Checks for difference between original and english names
