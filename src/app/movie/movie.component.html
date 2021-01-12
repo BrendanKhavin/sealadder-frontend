@@ -1,79 +1,63 @@
 <!--
     Truncate Text for movie
     Using breadcrumbs to backtrack
-    Changing routing
     Animate Something
+
+    Adjust Card Height
+    Truncate text and show full in description
 -->
 
 <base href="/">
 
-<style>
-    .wrapper {
-        display:grid;
-        grid-template-columns: repeat(4, 1fr);
-        grid-template-rows: repeat(5, 1fr);
-        grid-gap: 1em;
-        grid-auto-rows: 50px;
-        justify-self: stretch;
-        align-content: space-between;
-        align-items: stretch;
-        background: rgba(211, 211, 211, 0.336);
-        visibility: visible;
-        overflow: hidden;
-    }
-
-    .wrapper2 {
-        display:grid;
-        grid-template-columns: repeat(4, 1fr);
-        grid-template-rows: 90% 10%;
-        grid-gap: 1em;
-        grid-auto-rows: 1fr;
-        align-content: space-evenly;
-        background: rgba(211, 211, 211, 0.336);
-        visibility: hidden;
-        overflow: hidden;
-    }
-
-    .block{
-        display: block;
-        width: 100%;
-        border: none;
-        background-color: #9ccbd6;
-        padding: 14px 28px;
-        font-size: 16px;
-        cursor: pointer;
-        text-align: center;
-        color: white;
-        border-radius: 5px 5px 5px 5px;
-        vertical-align: baseline;
-    }  
-
-</style>
-
 <div id = "movieListDiv" class="wrapper">
     <a
+        class="block"
         *ngFor="let movie of movies"
     >
-        <div>
-            <img src={{movie.poster_path}}>
-        
-            <div text-align = "left">
-                    <h2>{{movie.original_title}}</h2>
-                    <h2 *ngIf= "!getEngTitle(movie.original_title, movie.title)"> English Title: {{movie.title}} </h2>
-            </div>
+        <mat-card> 
+                <img (click)="onSelect(movie)" class="img" mat-card-image src={{movie.poster_path}} alt="{{movie.title}}">
+            
+                <mat-card-title text-align = "left">
+                        <h2> {{movie.original_title}} 
+                            <h3 *ngIf= "!isEng(movie.original_title, movie.title)">
+                                English Title: {{movie.title}}
+                            </h3>
+                            <h2 *ngIf= "isEng(movie.original_title, movie.title)">
+                                <br>
+                            </h2>
+                        </h2>                
+                </mat-card-title>
+                
+                <hr>
+                <br>
+                
 
-            <div>
-                ({{movie.release_date}})
-                <br>   
-            </div>
+                <mat-card-subtitle>
+                    ({{movie.release_date}})
+                </mat-card-subtitle>
 
-            <div>
-                <p>{{movie.overview}}</p>
-            </div>
+                <mat-card-content >
+                    <p class="truncate"> {{movie.overview}}</p>
+                </mat-card-content>
 
-            <div>
-                <button (click)="onSelect(movie)" type="button" class="block" > Similar Movies </button>
-            </div>
-        </div>
+                <mat-card-actions class="btn-container">
+                    <button matBadge="15" matBadgeColor="warn" class="btn"> 
+                        <fa-icon [icon]="faSmileBeam"></fa-icon> 
+                    </button>
+                    <button matBadge="15" matBadgeColor="warn" class="btn"> 
+                        <fa-icon [icon]="faGrinSquintTears"></fa-icon> 
+                    </button>
+                    <button matBadge="15" matBadgeColor="warn" class="btn"> 
+                        <fa-icon [icon]="faTired"></fa-icon> 
+                    </button>
+                    <button matBadge="15" matBadgeColor="warn" class="btn"> 
+                        <fa-icon [icon]="faSadTear"></fa-icon> 
+                    </button>
+                </mat-card-actions>
+
+                <mat-card-footer>
+                    <button (click)="onSelect(movie)" type="button" class="btn-holder"> Similar Movies </button>
+                </mat-card-footer>
+            </mat-card>
     </a>
 </div>

@@ -3,6 +3,7 @@ import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MovieDbService } from '../movie-db.service';
 import { IMovieDb } from '../movieDb.interface';
+import { faSmileBeam, faGrinSquintTears, faTired, faSadTear } from '@fortawesome/free-regular-svg-icons';
 
 @Component({
   selector: 'app-simmovie',
@@ -17,6 +18,11 @@ export class SimmovieComponent implements OnInit {
   public movieID : any;
   movies = [] as any;
   movie = [] as any;
+
+  faSmileBeam = faSmileBeam;
+  faGrinSquintTears = faGrinSquintTears;
+  faTired = faTired;
+  faSadTear = faSadTear;
 
   constructor(private router: Router, private route: ActivatedRoute, private _movieDbService: MovieDbService) { }
 
@@ -44,7 +50,7 @@ export class SimmovieComponent implements OnInit {
     this.router.navigate(['/similar-movies/', movie.id, movie.title]);
   }
 
-  getEngTitle(oName : string, eName : string){ //Checks for difference between original and english names
+  isEng(oName: string, eName: string){ //Checks for difference between original and english names
     return oName == eName;
   }
 

@@ -9,6 +9,11 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MovieDbService} from './movie-db.service';
+import { MatCardModule } from '@angular/material/card';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { MatBadgeModule } from '@angular/material/badge';
+import { MatIconModule} from '@angular/material/icon';
+
 
 registerLocaleData(en);
 
@@ -22,7 +27,11 @@ registerLocaleData(en);
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatCardModule,
+    MatBadgeModule,
+    MatIconModule,
+    FontAwesomeModule,
   ],
   providers: [MovieDbService],
   bootstrap: [AppComponent]

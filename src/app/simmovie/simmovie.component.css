@@ -1,1 +1,90 @@
-@import '../movie/movie.component.css';
+.wrapper {
+    display:flex;
+    flex-direction: row;
+    gap: 4em;
+}
+
+
+.titleMovie {
+    border-right: 5px lightslategrey;
+}
+
+.wrapper2{
+    display:grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: 1em;
+    align-content: space-between;
+    background: rgba(211, 211, 211, 0.336);
+    visibility: visible;
+    overflow: hidden; 
+    padding-bottom: 2em;
+    
+}
+
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  font-size:large;
+}
+
+.truncate2 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  font-size:small;
+}
+
+.block:hover,.btn-holder:hover{
+    box-shadow: 0 8px 8px 8px rgba(0,0,0,.2), 0 8px 8px 0 rgba(0,0,0,.14), 0 8px 8px 0 rgba(0,0,0,.12) !important;
+      transform: translate3d(0,0,0);
+      transition: .4s cubic-bezier(.25,.8,.25,1),box-shadow 280ms cubic-bezier(.4,0,.2,1);
+  }
+  
+  
+  mat-card img, img{
+    border-radius: 5px 5px 5px 5px;
+    object-fit: contain;
+  }
+
+  img:hover{
+    cursor:pointer;
+  }
+  
+  mat-card {
+    height: 100%;
+    background-color: rgba(240, 248, 255, 0.61);
+  }
+
+  .btn-holder{
+    display: block;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left:0;
+    border: none;
+    background-color: #9ccbd6;
+    padding: 14px 28px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    color: white;
+    border-radius: 2px 2px 2px 2px;
+}  
+
+.btn-container{
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+}
+
+.btn{
+  border: none;
+  padding: 1em;
+  cursor: pointer;
+  border-radius: 8px;
+  margin: 1em;
+}
