@@ -7,7 +7,7 @@ import { SimmovieComponent } from './simmovie/simmovie.component';
 const routes: Routes = [
   {path: '', redirectTo: '/homepage', pathMatch: 'full'},
   {path: 'homepage', component: MovieComponent},
-  {path: 'similar-movies/:movie.id/:movie.title', component: SimmovieComponent, runGuardsAndResolvers: 'always'},
+  {path: 'similar-movies/:movie.id/:movie.title', component: SimmovieComponent},
   {path: '**', component: NotFoundComponent}
 ];
 

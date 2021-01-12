@@ -17,6 +17,10 @@ export class MovieDbService {
     return this.http.get<IMoviesDb>(this._url)
   }
 
+  getMovieDetails(movieId : string){
+    return this.http.get<IMovieDb>('https://api.themoviedb.org/3/movie/' + movieId + '?api_key=d32c6f01f6fd749822fd5c0c6aaec77b');
+  }
+
   getSimilarMovies(movieID : string): Observable<IMoviesDb>{
    let temp : string = 'https://api.themoviedb.org/3/movie/' + movieID + '/similar?api_key=d32c6f01f6fd749822fd5c0c6aaec77b';
     return this.http.get<IMoviesDb>(temp);

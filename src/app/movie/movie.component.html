@@ -37,7 +37,12 @@
                 </mat-card-subtitle>
 
                 <mat-card-content >
-                    <p class="truncate"> {{movie.overview}}</p>
+                    <h3 *ngIf="movie.tagline"> 
+                        {{movie.tagline}} 
+                    </h3>
+                    <h3 class="truncate" *ngIf="!movie.tagline">
+                        {{movie.overview}}
+                    </h3>
                 </mat-card-content>
 
                 <mat-card-actions class="btn-container">

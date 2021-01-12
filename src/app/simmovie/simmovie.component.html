@@ -1,7 +1,3 @@
-<style>
-
-</style>
-
 <div id = "movieListDiv" class="wrapper">
     <div class="titleMovie">
         <img src={{movie.poster_path}} class="img">
@@ -10,6 +6,16 @@
         <h1> {{movie.original_title}} </h1>
         <h2 *ngIf= "!isEng(movie.original_title, movie.title)"> English Title: {{movie.title}} </h2>
         <h1> ({{movie.release_date}}) </h1>
+        <div>
+            <h2 *ngIf="movie.status == 'Released'">
+                The movie has been released
+            </h2>
+        </div>
+        
+        The Runtime is: {{movie.runtime}} Minutes
+        <br>
+        <br>
+        <h2>"{{movie.tagline}}"</h2>
         <hr>
         <p class="truncate"> {{movie.overview}} </p>
     </div>
@@ -40,13 +46,17 @@
         <hr>
         <br>
         
-
         <mat-card-subtitle>
             ({{movie.release_date}})
         </mat-card-subtitle>
 
         <mat-card-content >
-            <p class="truncate2"> {{movie.overview}}</p>
+            <h3 *ngIf="movie.tagline"> 
+                {{movie.tagline}} 
+            </h3>
+            <h3 class="truncate" *ngIf="!movie.tagline">
+                {{movie.overview}}
+            </h3>
         </mat-card-content>
 
         <mat-card-actions class="btn-container">

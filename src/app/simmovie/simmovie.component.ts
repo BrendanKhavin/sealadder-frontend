@@ -32,12 +32,14 @@ export class SimmovieComponent implements OnInit {
       this.movieID = params.get('movie.id');
       this._movieDbService.getMovie(this.movieID).subscribe(data => {
         data.poster_path = 'https://image.tmdb.org/t/p/w400/' + data.poster_path;
+        this.getMovieDetails(this.movieID);
         this.movie = data;
       })
       this._movieDbService.getSimilarMovies(this.movieID).subscribe(data => {
         this.movies = [];
         for (var i = 0; i < 6; i++){
           data.results[i].poster_path = 'https://image.tmdb.org/t/p/w400/' + data.results[i].poster_path;
+          this.getMoviesDetails(i, data.results[i].id);
           this.movies.push(data.results[i]);
         } 
       })
@@ -45,6 +47,22 @@ export class SimmovieComponent implements OnInit {
     
     console.log(this.movies);
   }  
+
+  getMovieDetails(movieID: string){
+    this._movieDbService.getMovieDetails(movieID).subscribe(data => {
+      this.movie.runtime = data.runtime;
+      this.movie.status = data.status;
+      this.movie.tagline = data.tagline;
+    } )
+  }
+
+  getMoviesDetails(i : number, movieID: string){
+    this._movieDbService.getMovieDetails(movieID).subscribe(data => {
+      this.movies[i].runtime = data.runtime;
+      this.movies[i].status = data.status;
+      this.movies[i].tagline = data.tagline;
+    } )
+  }
 
   onSelect(movie : IMovieDb){
     this.router.navigate(['/similar-movies/', movie.id, movie.title]);
