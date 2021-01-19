@@ -1,5 +1,5 @@
 import { HttpClient } from "@angular/common/http";
-import { MovieDbService } from "./movie-db.service";
+import { movieEmotion } from "./movie-emotion.interface";
 
 export interface IMovieDb {
     adult: boolean;
@@ -19,8 +19,9 @@ export interface IMovieDb {
     video: boolean;
     vote_average: number;
     vote_count: number;
-    movieEmotion: [string, number][];
+    movieEmotion: [string,number][];
 }
+    
 
   
 export interface IMoviesDb {

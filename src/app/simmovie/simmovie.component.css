@@ -17,8 +17,7 @@
     background: rgba(211, 211, 211, 0.336);
     visibility: visible;
     overflow: hidden; 
-    padding-bottom: 2em;
-    
+    padding-bottom: 2em;   
 }
 
 .truncate {
@@ -91,4 +90,37 @@
 
 .h3 {
   font-style: italic;
+}
+
+.btn-footer{
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  width: 100%;
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+}
+
+.btn-holder-foot-blue{
+  background-color: #9ccbd6;
+  border: none;
+  width: 100%;
+  padding: 14px 28px;
+  font-size: 12px;
+  cursor: pointer;
+  text-align: center;
+  color: black;
+  border-radius: 2px 2px 2px 2px;
+}
+
+.btn-holder-foot-red{
+  background-color: rgb(238, 105, 105);
+  border: none;
+  width: 100%;
+  padding: 14px 28px;
+  font-size: 12px;
+  cursor: pointer;
+  text-align: center;
+  color: black;
+  border-radius: 2px 2px 2px 2px;
 }

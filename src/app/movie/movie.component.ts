@@ -4,7 +4,8 @@ import { MovieDbService } from '../movie-db.service';
 import { IMovieDb } from '../movieDb.interface';
 import { IMoviesDb} from '../movieDb.interface';
 import { Router } from '@angular/router';
-import { faSmileBeam, faGrinSquintTears, faTired, faSadTear } from '@fortawesome/free-regular-svg-icons';
+import { faSmileBeam, faGrinSquintTears, faTired, faSadTear} from '@fortawesome/free-regular-svg-icons';
+import { faUndoAlt } from '@fortawesome/free-solid-svg-icons';
 
 
 
@@ -22,12 +23,13 @@ export class MovieComponent implements OnInit {
   constructor(private _movieDbService: MovieDbService, private router: Router) {   }
 
   movies = [] as any;
+  moviesC = [] as any; // Constant Movies
   movieID : string = '';
   faSmileBeam = faSmileBeam;
   faGrinSquintTears = faGrinSquintTears;
   faTired = faTired;
   faSadTear = faSadTear;
-
+  faUndoAlt = faUndoAlt;
 
 
   ngOnInit() {
@@ -36,11 +38,12 @@ export class MovieComponent implements OnInit {
       for (var i = 0; i < data.results.length; i++){
         data.results[i].poster_path = 'https://image.tmdb.org/t/p/w500/' + data.results[i].poster_path;
         this.getMovieDetails(i , data.results[i].id);
+        this._movieDbService.setEmotions(data.results[i]);
         this.movies.push(data.results[i]);
-        console.log(data.results[i]);
       }
     }
   )
+  this.moviesC = this.movies;
 }   
 
   getMovieDetails(count : number, movieID: string){
@@ -60,5 +63,46 @@ export class MovieComponent implements OnInit {
   onSelect(movie : IMovieDb){
     this.router.navigate(['/similar-movies', movie.id, movie.title]);
   }
+
+  filterEmotion(eID : number){
+    var keys = Object.keys(localStorage);
+    let filtMovies = [] as any;
+    var btn = document.getElementById(eID + "Btn");
+    
+    this.movies.forEach((movie: any) => {
+      let temp : string = movie.id + '-' + eID;
+      if (localStorage.getItem(temp) == '1'){
+        filtMovies.push(movie);
+      }
+      });
   
+      this.movies = filtMovies;
+  }
+
+  incrementEmotion(movie : IMovieDb, eID: number){
+
+    if (localStorage.getItem(movie.id + '-' + eID) == '1') { 
+      localStorage.setItem(movie.id + '-' + eID, JSON.stringify(movie.movieEmotion[eID][1] = 0));
+    } else {   
+      localStorage.setItem(movie.id + '-' + eID, JSON.stringify(movie.movieEmotion[eID][1] = 1)); 
+    }
+  
+    console.log(localStorage.getItem(movie.id + '-' + eID));
+  }
+
+  getEmotion(movie: IMovieDb, eID: number){
+    if (localStorage.getItem(movie.id + '-' + eID)){ return localStorage.getItem(movie.id + '-' + eID);
+   } else { return 0; }
+  }
+
+  onDelete(movie: IMovieDb){
+    if (window.confirm("Are you sure you want to delete: (" + movie.title + ") from the list of movies?" )) {
+      this.movies.splice(this.movies.indexOf(movie),1);
+    }
+  }
+
+  resetBtn(){
+    this.movies = this.moviesC;
+  }
+
 }

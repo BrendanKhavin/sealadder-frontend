@@ -1,68 +1,95 @@
-<!--
+    <!--
     Truncate Text for movie
     Using breadcrumbs to backtrack
     Animate Something
 
     Adjust Card Height
     Truncate text and show full in description
--->
+    -->
 
-<base href="/">
+    <base href="/">
 
-<div id = "movieListDiv" class="wrapper">
-    <a
-        class="block"
-        *ngFor="let movie of movies"
-    >
-        <mat-card> 
-                <img (click)="onSelect(movie)" class="img" mat-card-image src={{movie.poster_path}} alt="{{movie.title}}">
-            
-                <mat-card-title text-align = "left">
-                        <h2> {{movie.original_title}} 
-                            <h3 *ngIf= "!isEng(movie.original_title, movie.title)">
-                                English Title: {{movie.title}}
-                            </h3>
-                            <h2 *ngIf= "isEng(movie.original_title, movie.title)">
-                                <br>
-                            </h2>
-                        </h2>                
-                </mat-card-title>
+<div class="mainpage">
+
+    <div class = "btn-container-top">
+            <button (click)="filterEmotion(0)" matBadgeColor="warn" id="0Btn" class="btn"> 
+                <fa-icon [icon]="faSmileBeam"></fa-icon> 
+            </button>
+            <button (click)="filterEmotion(1)" matBadgeColor="warn" id="1Btn" class="btn"> 
+                <fa-icon [icon]="faGrinSquintTears"></fa-icon> 
+            </button>
+            <button (click)="filterEmotion(2)" matBadgeColor="warn" id="2Btn" class="btn"> 
+                <fa-icon [icon]="faTired"></fa-icon> 
+            </button>
+            <button (click)="filterEmotion(3)"matBadgeColor="warn"  id="3Btn" class="btn"> 
+                <fa-icon [icon]="faSadTear"></fa-icon> 
+            </button>
+            <button (click)="resetBtn()" matBadgeColor="warn"       id="4Btn" class="btn-red"> 
+                <fa-icon [icon]="faUndoAlt"></fa-icon> 
+            </button>
+    </div>
+
+    <div id = "movieListDiv" class="wrapper">
+        <a
+            class="block"
+            *ngFor="let movie of movies"
+        >
+            <mat-card> 
+                    <img (click)="onSelect(movie)" class="img" mat-card-image src={{movie.poster_path}} alt="{{movie.title}}">
                 
-                <hr>
-                <br>
-                
+                    <mat-card-title text-align = "left">
+                            <h2> {{movie.original_title}} 
+                                <h3 *ngIf= "!isEng(movie.original_title, movie.title)">
+                                    English Title: {{movie.title}}
+                                </h3>
+                                <h2 *ngIf= "isEng(movie.original_title, movie.title)">
+                                    <br>
+                                </h2>
+                            </h2>                
+                    </mat-card-title>
+                    
+                    <hr>
+                    <br>
+                    
 
-                <mat-card-subtitle>
-                    ({{movie.release_date}})
-                </mat-card-subtitle>
+                    <mat-card-subtitle>
+                        ({{movie.release_date}})
+                    </mat-card-subtitle>
 
-                <mat-card-content >
-                    <h3 *ngIf="movie.tagline"> 
-                        {{movie.tagline}} 
-                    </h3>
-                    <h3 class="truncate" *ngIf="!movie.tagline">
-                        {{movie.overview}}
-                    </h3>
-                </mat-card-content>
+                    <mat-card-content >
+                        <h3 *ngIf="movie.tagline"> 
+                            {{movie.tagline}} 
+                        </h3>
+                        <h3 class="truncate" *ngIf="!movie.tagline">
+                            {{movie.overview}}
+                        </h3>
+                    </mat-card-content>
 
-                <mat-card-actions class="btn-container">
-                    <button matBadge="15" matBadgeColor="warn" class="btn"> 
-                        <fa-icon [icon]="faSmileBeam"></fa-icon> 
-                    </button>
-                    <button matBadge="15" matBadgeColor="warn" class="btn"> 
-                        <fa-icon [icon]="faGrinSquintTears"></fa-icon> 
-                    </button>
-                    <button matBadge="15" matBadgeColor="warn" class="btn"> 
-                        <fa-icon [icon]="faTired"></fa-icon> 
-                    </button>
-                    <button matBadge="15" matBadgeColor="warn" class="btn"> 
-                        <fa-icon [icon]="faSadTear"></fa-icon> 
-                    </button>
-                </mat-card-actions>
+                    <mat-card-actions class="btn-container">
+                        <button (click)="incrementEmotion(movie, 0)" matBadge="{{getEmotion(movie,0)}}" matBadgeColor="warn" class="btn"> 
+                            <fa-icon [icon]="faSmileBeam"></fa-icon> 
+                        </button>
+                        <button (click)="incrementEmotion(movie, 1)" matBadge="{{getEmotion(movie,1)}}" matBadgeColor="warn" class="btn"> 
+                            <fa-icon [icon]="faGrinSquintTears"></fa-icon> 
+                        </button>
+                        <button (click)="incrementEmotion(movie, 2)" matBadge="{{getEmotion(movie,2)}}" matBadgeColor="warn" class="btn"> 
+                            <fa-icon [icon]="faTired"></fa-icon> 
+                        </button>
+                        <button (click)="incrementEmotion(movie, 3)" matBadge="{{getEmotion(movie,3)}}" matBadgeColor="warn" class="btn"> 
+                            <fa-icon [icon]="faSadTear"></fa-icon> 
+                        </button>
+                    </mat-card-actions>
 
-                <mat-card-footer>
-                    <button (click)="onSelect(movie)" type="button" class="btn-holder"> Similar Movies </button>
-                </mat-card-footer>
-            </mat-card>
-    </a>
+                    <mat-card-footer class="btn-footer">
+                        <div>
+                            <button (click)="onSelect(movie)" type="button" class="btn-holder-foot-blue"> Similar Movies </button>
+                        </div>
+                        <div>
+                            <button (click)="onDelete(movie)" type="button" class="btn-holder-foot-red"> Delete Movie </button>
+                        </div>
+                    </mat-card-footer>
+                    
+                </mat-card>
+        </a>
+    </div>
 </div>

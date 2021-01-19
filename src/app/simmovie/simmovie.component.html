@@ -15,7 +15,11 @@
         The Runtime is: {{movie.runtime}} Minutes
         <br>
         <br>
-        <h2>"{{movie.tagline}}"</h2>
+
+        <h2 *ngIf="movie.tagline"> 
+            "{{movie.tagline}}" 
+        </h2>
+
         <hr>
         <p class="truncate"> {{movie.overview}} </p>
     </div>
@@ -60,22 +64,27 @@
         </mat-card-content>
 
         <mat-card-actions class="btn-container">
-            <button matBadge="15" matBadgeColor="warn" class="btn"> 
+            <button (click)="incrementEmotion(movie, 0)" matBadge="{{getEmotion(movie,0)}}" matBadgeColor="warn" class="btn"> 
                 <fa-icon [icon]="faSmileBeam"></fa-icon> 
             </button>
-            <button matBadge="15" matBadgeColor="warn" class="btn"> 
+            <button (click)="incrementEmotion(movie, 1)" matBadge="{{getEmotion(movie,1)}}" matBadgeColor="warn" class="btn"> 
                 <fa-icon [icon]="faGrinSquintTears"></fa-icon> 
             </button>
-            <button matBadge="15" matBadgeColor="warn" class="btn"> 
+            <button (click)="incrementEmotion(movie, 2)" matBadge="{{getEmotion(movie,2)}}" matBadgeColor="warn" class="btn"> 
                 <fa-icon [icon]="faTired"></fa-icon> 
             </button>
-            <button matBadge="15" matBadgeColor="warn" class="btn"> 
+            <button (click)="incrementEmotion(movie, 3)" matBadge="{{getEmotion(movie,3)}}" matBadgeColor="warn" class="btn"> 
                 <fa-icon [icon]="faSadTear"></fa-icon> 
             </button>
         </mat-card-actions>
 
-        <mat-card-footer>
-            <button (click)="onSelect(movie)" type="button" class="btn-holder"> Similar Movies </button>
+        <mat-card-footer class="btn-footer">
+            <div>
+                <button (click)="onSelect(movie)" type="button" class="btn-holder-foot-blue"> Similar Movies </button>
+            </div>
+            <div>
+                <button (click)="onDelete(movie)" type="button" class="btn-holder-foot-red"> Delete Movie </button>
+            </div>
         </mat-card-footer>
     </mat-card>
     </a>

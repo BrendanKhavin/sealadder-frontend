@@ -40,6 +40,45 @@ p {
     border-radius: 2px 2px 2px 2px;
 }  
 
+
+.btn-holder-foot-blue{
+  background-color: #9ccbd6;
+  border: none;
+  width: 100%;
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+  color: black;
+  border-radius: 2px 2px 2px 2px;
+}
+
+.btn-holder-foot-red{
+  background-color: rgb(238, 105, 105);
+  border: none;
+  width: 100%;
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+  color: black;
+  border-radius: 2px 2px 2px 2px;
+}
+
+.btn-footer{
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  width: 100%;
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  margin-bottom: 1rem;
+}
+
+.btn-red{
+  background-color:rgb(238, 105, 105);
+}
+
 .block {
   display:inline;
 }
@@ -55,7 +94,7 @@ mat-card {
   background-color: rgba(240, 248, 255, 0.61);
 }
 
-.btn{
+.btn, .btn-red{
   border: none;
   padding: 1em;
   cursor: pointer;
@@ -63,10 +102,13 @@ mat-card {
   margin: 1em;
 }
 
-
 .btn-container{
   display: grid;
   grid-template-columns: repeat(4,1fr);
+}
+
+.btn-container-top{
+  display:block;
 }
 
 .btn:hover{
@@ -86,5 +128,10 @@ mat-card {
 }
 
 .img {
-    object-fit: contain;
+   object-fit: contain;
+}
+
+.mainpage{
+    display:grid;
+    grid-template-columns: 5% 95%;
 }
